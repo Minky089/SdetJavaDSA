@@ -1,9 +1,12 @@
 package com.foundation;
 
+import lombok.extern.log4j.Log4j2;
+
 import java.util.Arrays;
 
+@Log4j2
 public class PrefixSum {
-    public static void prefixSumWithoutVar(int[] inputArr){
+    public static void prefixSumWithTempVar(int[] inputArr){
         int sum = 0;
         int[] result = new int[inputArr.length];
         for (int i = 0; i < inputArr.length; i++) {
@@ -11,24 +14,22 @@ public class PrefixSum {
             result[i] = sum;
         }
 
-        System.out.println("======= Prefix Sum with Sum var ======");
-        System.out.println("Input: " + Arrays.toString(inputArr));
-        System.out.println("Output: " + Arrays.toString(result));
+        log.info("Temp Var Prefix Sum - Input: {}", Arrays.toString(inputArr));
+        log.info("Temp Var Prefix Sum - Output: {}", Arrays.toString(result));
     }
 
-    public static void prefixSumWithVar(int[] inputArr){
+    public static void prefixSumWithArray(int[] inputArr){
         int[] result = new int[inputArr.length];
         result[0] = inputArr[0];
         for (int i = 1; i < inputArr.length; i++)
             result[i] = result[i - 1] + inputArr[i];
 
-        System.out.println("======= Prefix Sum without Sum var ======");
-        System.out.println("Input: " + Arrays.toString(inputArr));
-        System.out.println("Output: " + Arrays.toString(result));
+        log.info("Array Prefix Sum - Input: {}", Arrays.toString(inputArr));
+        log.info("Array Prefix Sum - Output: {}", Arrays.toString(result));
     }
 
     public static void main(String[] args) {
-        prefixSumWithoutVar(new int[]{1, 2, 3});
-        prefixSumWithVar(new int[]{1, 2, 3, 6, 8});
+        prefixSumWithTempVar(new int[]{1, 2, 3});
+        prefixSumWithArray(new int[]{1, 2, 3, 6, 8});
     }
 }
